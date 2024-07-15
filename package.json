@@ -2,7 +2,7 @@
 	"name": "directus-extension-tableau-panel",
 	"description": "Tableau Embedded Panel",
 	"icon": "extension",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"keywords": [
 		"directus",
 		"directus-extension",
@@ -30,5 +30,14 @@
 	},
 	"dependencies": {
 		"@tableau/embedding-api": "^3.11.1"
-	}
+	},
+	"repository": {
+	  "type": "git",
+	  "url": "git+https://github.com/evertonch/directus-extension-tableau-panel.git"
+	},
+	"license": "ISC",
+	"bugs": {
+	  "url": "https://github.com/evertonch/directus-extension-tableau-panel/issues"
+	},
+	"homepage": "https://github.com/evertonch/directus-extension-tableau-panel#readme"
 }
