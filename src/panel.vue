@@ -1,11 +1,9 @@
 <template>
-	<div style="height: 100%; width: 100%;">
-		<tableau-viz id="viz" :src="url" toolbar="hidden" hide-tabs></tableau-viz>
-	</div>
+	<div v-if="errorMsg" v-html="errorMsg.outerHTML" style="height: 100%; width: 100%;"></div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref, HTMLElement } from 'vue';
 import { TableauViz } from '@tableau/embedding-api'
 
 export default defineComponent({
@@ -19,11 +17,22 @@ export default defineComponent({
 			default: '',
 		},
 	},
-	mounted() {
-		let tableauScript = document.createElement('script')
-		tableauScript.setAttribute('src', 'https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js')
-		tableauScript.setAttribute('type', 'module')
-		document.head.appendChild(tableauScript)
+	setup(props) {
+		const errorMsg = ref<HTMLElement | null>(null);
+		createViz();
+
+		return {
+			errorMsg
+		};
+
+		function createViz() {
+			const viz = new TableauViz();
+
+			viz.src = props.url;
+			viz.toolbar = 'hidden';
+
+			errorMsg.value = viz;
+		}
 	}
 });
 </script>
